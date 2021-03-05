@@ -7,6 +7,8 @@ For instructions regarding the `dbdctl` tool, see [dbdctl.8.md](doc/dbdctl.8.md)
 For details on the license of the software, see [LICENSING.md](LICENSING.md).
 
 ## The Linux Snapshot Problem
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbon163%2FBenTest.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbon163%2FBenTest?ref=badge_shield)
+
 
 Linux has some basic tools for creating instant copy-on-write (COW) “snapshots” of filesystems.  The most prominent of these are LVM and device mapper (on which LVM is built).  Unfortunately, both have limitations that render them unsuitable for supporting live server snapshotting across disparate Linux environments.  Both require an unused volume to be available on the machine to track COW data. Servers, and particularly production servers, may not be preconfigured with the required spare volume.  In addition, these snapshotting systems only allow a read-only volume to be made read-write.  Taking a live backup requires unmounting your data volume, setting up a snapshot of it, mounting the snapshot, and then using a tool like `dd` or `rsync` to copy the original volume to a safe location.  Many production servers simply cannot be brought down for the time it takes to do this and afterwards all of the new data in the COW volume must eventually be merged back in to the original volume (which requires even more downtime). This is impractical and extremely hacky, to say the least.
 
@@ -92,3 +94,7 @@ The current status of the dattobd driver can be read from the file `/proc/datto-
 	* 5 = unverified snapshot
 * `nr_changed_blocks`: The number of blocks that have changed since the last snapshot.
 * `version`: Version of the on-disk format of the COW header.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbon163%2FBenTest.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbon163%2FBenTest?ref=badge_large)
